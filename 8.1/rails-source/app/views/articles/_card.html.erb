@@ -1,0 +1,6 @@
+<article class="post-card">
+  <div class="card-top"><span class="post-category"><%= article.topic %></span><span class="post-date"><%= article.created_at.strftime("%b %d, %Y") %></span></div>
+  <h3><%= link_to article.title, article_path(article) %></h3>
+  <p><%= truncate(article.body, length: 165) %></p>
+  <div class="card-bottom"><%= link_to "Read story →", article_path(article), class: "read-link" %><span><%= pluralize(article.comments.size, "comment") %></span></div>
+</article>

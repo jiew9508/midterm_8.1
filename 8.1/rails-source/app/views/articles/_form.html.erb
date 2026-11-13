@@ -1,0 +1,10 @@
+<%= form_with model: article, class: "editor-form" do |form| %>
+  <% if article.errors.any? %>
+    <div class="form-errors"><strong>Check these details:</strong><ul><% article.errors.full_messages.each do |message| %><li><%= message %></li><% end %></ul></div>
+  <% end %>
+  <div class="field"><%= form.label :title, "Headline" %><%= form.text_field :title, required: true, placeholder: "Start with a memorable headline" %></div>
+  <div class="field"><%= form.label :topic, "Topic" %><%= form.select :topic, Article::TOPICS, { prompt: "Choose a topic" }, { required: true } %></div>
+
+  <div class="field"><%= form.label :body, "Write your story" %><%= form.text_area :body, required: true, rows: 12, placeholder: "Tell your story here..." %></div>
+  <div class="form-actions"><%= form.submit (article.persisted? ? "Save changes" : "Publish post"), class: "button button-primary" %><%= link_to "Cancel", articles_path, class: "button button-outline" %></div>
+<% end %>
